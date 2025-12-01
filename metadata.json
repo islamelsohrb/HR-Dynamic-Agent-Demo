@@ -1,0 +1,5 @@
+{
+  "name": "HR Dynamic Agent Demo",
+  "description": "A single-tenant HR data analysis tool using Gemini to ingest CSV/JSON files and answer grounded questions with citations.",
+  "requestFramePermissions": []
+}
