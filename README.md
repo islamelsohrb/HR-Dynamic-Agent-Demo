@@ -1,96 +1,141 @@
-# AI Data Analyst Agent
+# 🏆 **Delytic — Enterprise Multi‑Agent AI Analyst for Automated Data Intelligence**
 
-A full-stack AI-powered data analytics platform enabling users to upload datasets, preprocess them, interact with an intelligent multi‑tool agent, generate visual insights, and build automated dashboards — all through natural language.
-
----
-
-## 🚀 Overview
-
-**Delytic** transforms raw data into insights using an AI agent powered by Gemini 2.5 Flash and a set of analytical tools (SQL, statistics, chart generation, Python execution, etc.).
-
-Users can:
-
-* Upload CSV/XLSX files
-* Clean & preprocess datasets
-* Run analysis using natural language
-* Generate charts
-* Build dashboards automatically
-* Save and load their dashboards
-
-This makes Delytic a modern alternative to tools like Excel, Power BI, and Jupyter — but with an AI-first workflow.
+Upload your data → Let the agent clean, analyze, visualize, and build dashboards — **exactly like a real data analyst, but fully automated.**
 
 ---
 
-## 🧩 Features
+## 🚀 **Overview**
 
-### 🔼 Dataset Upload
+**Delytic** is a full‑stack, multi‑tool AI Data Analyst built to turn raw datasets into actionable insights using natural language only.
 
-* Upload CSV/XLSX
-* Preview first rows
+Powered by **Gemini 2.5 Flash**, Delytic performs:
+
+* Intelligent data preprocessing
+* SQL querying & validation
+* Statistical computation
+* Automated chart generation
+* Executive‑grade insights
+* Autonomous dashboard creation & updates
+
+It is a modern AI‑first alternative to Excel, Power BI, Looker, and Jupyter — but accessible to *any* user, even with zero technical skills.
+
+---
+
+## ✨ **Key Features**
+
+### 🔼 **Dataset Upload & Preprocessing**
+
+* CSV/XLSX upload
 * Automatic column detection
-* Preprocessing:
+* Missing‑value handling
+* Data type normalization
+* Column removal & renaming
+* Duplicate detection & cleanup
 
-  * Remove columns
-  * Handle missing values
-  * Normalize/select data types
+### 🤖 **AI Agent (Multi‑Tool Orchestrator)**
 
-### 🤖 AI Agent
+A reasoning‑capable agent that can:
 
-A multi-tool agent capable of:
+* Run SQL queries
+* Compute statistics
+* Detect trends & patterns
+* Identify anomalies
+* Summarize datasets
+* Generate visual charts
+* Build dashboards
+* Explain insights in natural language
 
-* SQL querying
-* Statistical analysis
-* Data summarization
-* Chart creation
-* Insights extraction
-* Multi-step reasoning
+### 📊 **Chart Generation**
 
-### 📊 Chart Generation
+Supports multiple visualization types:
 
-Supports:
-
-* Bar charts
-* Line charts
-* Scatter plots
+* Bar, Line, Pie
+* Scatter, Heatmap
 * Histograms
-* Heatmaps
+* Area & Trend charts
 
-### 📈 Dashboard Builder
+Charts are produced via structured JSON tool calls.
 
-* Convert charts into a dashboard layout
-* Drag & drop positioning
-* Save dashboard to Supabase
-* Load existing dashboards
+### 📈 **Dashboard Builder**
+
+* Drag‑and‑drop layout
+* Auto‑generated insight cards
+* Save dashboards to Supabase
+* Load dashboards anytime
 
 ---
 
-## 🏗️ Architecture
+## 🧩 **Architecture**
+
+```yaml
+architecture:
+  orchestrator_agent:
+    role: "Understands intent, selects tools, performs multi‑step reasoning"
+  tools:
+    - run_sql: "Executes SQL with safety checks"
+    - compute_stats: "Descriptive & numeric analysis"
+    - generate_chart: "Produces chart config JSON"
+    - summarize_dataframe: "Schema, anomalies, column types"
+    - python_tool: "Advanced logic (optional)"
+
+  backend:
+    platform: "Supabase"
+    features:
+      - dataset storage
+      - auth
+      - dashboard persistence
+
+  frontend:
+    stack:
+      - Next.js 15
+      - TypeScript
+      - Tailwind v4
+      - Framer Motion
+      - Chart.js / Recharts
+```
+
+---
+
+## 🛠 **Tech Stack**
 
 ### **Frontend**
 
 * Next.js 15
 * TypeScript
-* Tailwind v4
+* Tailwind CSS v4
 * Framer Motion
 * Chart.js / Recharts
 
 ### **Backend**
 
-* Supabase (Auth, DB, Storage)
-* Gemini 2.5 Flash
-* Multi-tool agent framework
+* Supabase (Auth + DB + Storage)
+* Supabase Edge Functions
 
-### **Agent Tools**
+### **AI Layer**
 
-* `run_sql(query)` — SQL analysis
-* `compute_stats(columns)` — numeric stats
-* `generate_chart(type, x, y)` — chart config JSON
-* `summarize_dataframe()` — dataset summary
-* `python_tool(code)` — (optional) advanced Python
+* Gemini 2.5 Flash (LLM reasoning + structured tool use)
+* Multi‑tool agent loop
 
 ---
 
-## 📁 Folder Structure
+## 🔍 **End‑to‑End Workflow**
+
+1. User uploads dataset
+2. Agent analyzes schema & data types
+3. User asks a question (e.g., *"Why is attrition high in Sales?"*)
+4. Agent performs multi‑step reasoning:
+
+   * SQL filtering
+   * Statistical checks
+   * Trend computation
+   * Optional chart generation
+5. Agent composes final insights
+6. User turns charts into a dashboard
+7. Dashboard is saved & can be re‑opened anytime
+
+---
+
+## 📁 **Folder Structure**
 
 ```
 root/
@@ -121,15 +166,13 @@ root/
 │   ├── supabaseClient.ts
 │   └── utils.ts
 │
-├── public/
-│   └── logo.svg
-│
-└── README.md
+└── public/
+    └── logo.svg
 ```
 
 ---
 
-## ⚙️ Installation
+## 🧪 **Running the Project**
 
 ```bash
 npm install
@@ -149,43 +192,37 @@ GEMINI_API_KEY=your_key
 
 ---
 
-## 🧪 Running the Agent
+## 🧲 **Roadmap**
 
-The agent is triggered through the chat UI.
-It sends the conversation → dataset → user query to the orchestrator → which selects the correct tools.
-
-Each tool returns JSON, and the agent composes a final answer.
-
----
-
-## 🧲 Roadmap
-
-* Predictive modeling tool
-* Time-series forecasting
-* Notebook export (ipynb)
-* Multi-agent orchestration
-* External data source connectors (Postgres / BigQuery)
-* Team collaboration mode
+* Predictive modeling agent
+* Time‑series forecasting
+* Notebook export (Markdown → PDF → Jupyter)
+* Multi‑agent pipelines
+* External database connectors (Postgres / BigQuery)
+* Team collaboration dashboards
+* Auto‑insights monitoring agent
 
 ---
 
-## 📝 License
+## 📝 **License**
 
 Released under **Attribution 4.0 International (CC BY 4.0)**.
 
 ---
 
-## 🔗 Links
+## 👤 **Authors**
 
-**Kaggle Submission:** [Add link](https://www.kaggle.com/competitions/agents-intensive-capstone-project/writeups/an-enterprise-multi-tool-ai-analyst-for-automated)
-**GitHub Repository:** [Add repo link](https://github.com/islamelsohrb/HR-Dynamic-Agent-Demo)
-
+**Mohamed Abuhamida**
+**Islam Elsohrb**
 
 ---
 
-## 👤 Author
+## 🔗 **Links**
 
-**Mohamed Abuhamida** <br><br>
-**Esalm Sohrob**
+* Kaggle Submission: *https://www.kaggle.com/competitions/agents-intensive-capstone-project/writeups/an-enterprise-multi-tool-ai-analyst-for-automated*
+* GitHub Repo: *https://github.com/islamelsohrb/HR-Dynamic-Agent-Demo*
 
-Thank you for checking out Delytic! Let me know if you'd like to contribute or collaborate.
+---
+
+Thank you for checking out **Delytic**!
+Feel free to collaborate, extend, or contribute to the project.
