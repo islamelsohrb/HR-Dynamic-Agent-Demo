@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "name": "HR Dynamic Agent Demo",
+=======
+  "name": "HR Dynamic Agent",
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
   "description": "A single-tenant HR data analysis tool using Gemini to ingest CSV/JSON files and answer grounded questions with citations.",
   "requestFramePermissions": []
 }

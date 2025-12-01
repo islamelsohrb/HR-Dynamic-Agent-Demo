@@ -14,6 +14,10 @@ import {
   IngestionStatus, 
   ActiveDataset, 
   ChatMessage,
+<<<<<<< HEAD
+=======
+  DatasetVersion,
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
   DatasetListItem
 } from './types';
 import { agentLogger } from './services/agentLogger';
@@ -35,19 +39,35 @@ const generateHash = (content: string): string => {
 const App: React.FC = () => {
   // --- Global State ---
   const [currentPage, setCurrentPage] = useState<Page>(Page.OVERVIEW);
+<<<<<<< HEAD
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); 
   const [isMobile, setIsMobile] = useState(false);
   
   // --- Data State ---
   const [datasetList, setDatasetList] = useState<DatasetListItem[]>([]);
   const [datasetCache, setDatasetCache] = useState<Record<string, ActiveDataset>>({});
+=======
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Default open on desktop
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // --- Data State ---
+  // List of all uploaded datasets (metadata only)
+  const [datasetList, setDatasetList] = useState<DatasetListItem[]>([]);
+  // Store full dataset objects in memory for demo (in real app, fetch by ID)
+  const [datasetCache, setDatasetCache] = useState<Record<string, ActiveDataset>>({});
+  // Pointer to active dataset
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
   const [activeDataset, setActiveDataset] = useState<ActiveDataset | null>(null);
   
   // --- Ingestion State ---
   const [isUploadModalOpen, setIsUploadModalOpen] = useState(false);
   const [ingestionStatus, setIngestionStatus] = useState<IngestionStatus>(IngestionStatus.IDLE);
   
+<<<<<<< HEAD
   // --- Chat State ---
+=======
+  // --- Chat State (Orchestrator) ---
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isChatThinking, setIsChatThinking] = useState(false);
 
@@ -71,15 +91,29 @@ const App: React.FC = () => {
     const startTime = performance.now();
     
     try {
+<<<<<<< HEAD
       await new Promise(r => setTimeout(r, 500)); 
+=======
+      // 1. Parse
+      await new Promise(r => setTimeout(r, 800)); // Fake network
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
       setIngestionStatus(IngestionStatus.ANALYZING);
       
       const { fileName, rows, columns } = await processFile(file);
       
+<<<<<<< HEAD
       await new Promise(r => setTimeout(r, 500));
       setIngestionStatus(IngestionStatus.INDEXING);
       
       await new Promise(r => setTimeout(r, 500));
+=======
+      // 2. Index
+      await new Promise(r => setTimeout(r, 800));
+      setIngestionStatus(IngestionStatus.INDEXING);
+
+      // 3. Complete
+      await new Promise(r => setTimeout(r, 800));
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
       
       const versionHash = generateHash(JSON.stringify(rows));
       const newId = generateId();
@@ -90,7 +124,11 @@ const App: React.FC = () => {
         rows,
         columns,
         version: 1,
+<<<<<<< HEAD
         versionHash,
+=======
+        versionHash, // Init hash
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
         history: [{
            version: 1,
            timestamp: new Date(),
@@ -101,15 +139,26 @@ const App: React.FC = () => {
         uploadedAt: new Date()
       };
 
+<<<<<<< HEAD
       setDatasetCache(prev => ({ ...prev, [newId]: newDataset }));
 
+=======
+      // Add to Cache
+      setDatasetCache(prev => ({ ...prev, [newId]: newDataset }));
+
+      // Add to List
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
       const newItem: DatasetListItem = {
         id: newId,
         name: fileName,
         rows: rows.length,
         version: 1,
         uploadedAt: new Date(),
+<<<<<<< HEAD
         active: false 
+=======
+        active: false // Inactive by default unless it's the first one
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
       };
 
       setDatasetList(prev => {
@@ -141,6 +190,7 @@ const App: React.FC = () => {
   const handleActivateDataset = (id: string) => {
     const target = datasetCache[id];
     if (target) {
+<<<<<<< HEAD
         // Deep clone to ensure clean state
         const safeTarget = JSON.parse(JSON.stringify(target));
         
@@ -154,6 +204,9 @@ const App: React.FC = () => {
         if (safeTarget.uploadedAt) safeTarget.uploadedAt = new Date(safeTarget.uploadedAt);
 
         setActiveDataset(safeTarget);
+=======
+        setActiveDataset(target);
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
         setDatasetList(prev => prev.map(ds => ({
             ...ds,
             active: ds.id === id
@@ -162,6 +215,7 @@ const App: React.FC = () => {
     }
   };
 
+<<<<<<< HEAD
   const handleUpdateDataset = (updatedDataset: ActiveDataset) => {
       // FORCE FRESH REFERENCE to trigger effects in children
       const newDatasetState = { 
@@ -182,12 +236,31 @@ const App: React.FC = () => {
                   ...ds,
                   rows: updatedDataset.rows.length,
                   version: updatedDataset.version
+=======
+  const handleUpdateDataset = (updated: ActiveDataset) => {
+      // Update Active
+      setActiveDataset(updated);
+      
+      // Update Cache
+      setDatasetCache(prev => ({ ...prev, [updated.id]: updated }));
+      
+      // Update List Metadata
+      setDatasetList(prev => prev.map(ds => {
+          if (ds.id === updated.id) {
+              return {
+                  ...ds,
+                  rows: updated.rows.length,
+                  version: updated.version
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
               };
           }
           return ds;
       }));
+<<<<<<< HEAD
 
       agentLogger.addLog('0', `Dataset committed: v${updatedDataset.version}`, 'action');
+=======
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
   };
 
   const handleChat = async (text: string) => {
@@ -200,11 +273,19 @@ const App: React.FC = () => {
     setMessages(prev => [...prev, userMsg]);
     setIsChatThinking(true);
 
+<<<<<<< HEAD
+=======
+    // Prepare context for Gemini (simulated ingestion context)
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
     const filesForAgent = activeDataset ? [{
        id: activeDataset.id,
        name: activeDataset.fileName,
        type: 'text/csv',
+<<<<<<< HEAD
        content: JSON.stringify(activeDataset.rows.slice(0, 50)), 
+=======
+       content: JSON.stringify(activeDataset.rows.slice(0, 50)), // pass sample
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
        version: activeDataset.version,
        uploadDate: activeDataset.lastModified
     }] : [];
@@ -214,7 +295,11 @@ const App: React.FC = () => {
        filesForAgent, 
        [...messages, userMsg], 
        activeDataset,
+<<<<<<< HEAD
        handleUpdateDataset 
+=======
+       handleUpdateDataset // Callback for DataOps edits
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
     );
 
     const botMsg: ChatMessage = {
@@ -229,9 +314,18 @@ const App: React.FC = () => {
     setIsChatThinking(false);
   };
 
+<<<<<<< HEAD
   return (
     <div className="flex h-screen bg-slate-50 font-sans text-slate-900 overflow-hidden">
       
+=======
+  // --- Render ---
+
+  return (
+    <div className="flex h-screen bg-slate-50 font-sans text-slate-900 overflow-hidden">
+      
+      {/* 1. Sidebar */}
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
       <Sidebar 
         currentPage={currentPage}
         onNavigate={setCurrentPage}
@@ -243,16 +337,29 @@ const App: React.FC = () => {
         onActivateDataset={handleActivateDataset}
       />
 
+<<<<<<< HEAD
       <div className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${!isMobile && isSidebarOpen ? 'ml-64' : 'ml-0'}`}>
         
+=======
+      {/* 2. Main Content Wrapper */}
+      <div className={`flex-1 flex flex-col min-w-0 transition-all duration-300 ${!isMobile && isSidebarOpen ? 'ml-64' : 'ml-0'}`}>
+        
+        {/* Top Bar */}
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
         <TopBar 
           currentPage={currentPage}
           onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
           onUploadClick={() => setIsUploadModalOpen(true)}
         />
 
+<<<<<<< HEAD
         <main className="flex-1 overflow-y-auto p-4 lg:p-8 bg-slate-50">
            <div className="max-w-[1600px] mx-auto h-full">
+=======
+        {/* Page Content */}
+        <main className="flex-1 overflow-y-auto p-4 lg:p-8">
+           <div className="max-w-7xl mx-auto h-full">
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
               {currentPage === Page.OVERVIEW && (
                 <Overview 
                   activeDataset={activeDataset}
@@ -273,12 +380,20 @@ const App: React.FC = () => {
         </main>
       </div>
 
+<<<<<<< HEAD
+=======
+      {/* 3. Global Floating Chat */}
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
       <FloatingChat 
          messages={messages}
          onSendMessage={handleChat}
          isThinking={isChatThinking}
       />
 
+<<<<<<< HEAD
+=======
+      {/* 4. Upload Modal */}
+>>>>>>> 20dafe6ed3bfb9c6cf74c4346460665892823523
       <UploadModal 
         isOpen={isUploadModalOpen} 
         onClose={() => {
