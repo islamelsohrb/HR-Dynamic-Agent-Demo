@@ -185,7 +185,7 @@ Released under **Attribution 4.0 International (CC BY 4.0)**.
 
 ## 👤 Author
 
-**Mohamed Abuhamida** \n\n
+**Mohamed Abuhamida** <br><br>
 **Esalm Sohrob**
 
 Thank you for checking out Delytic! Let me know if you'd like to contribute or collaborate.
