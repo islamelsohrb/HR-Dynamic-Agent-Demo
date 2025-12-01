@@ -1,4 +1,4 @@
-# Delytic — AI Data Analyst Agent
+# AI Data Analyst Agent
 
 A full-stack AI-powered data analytics platform enabling users to upload datasets, preprocess them, interact with an intelligent multi‑tool agent, generate visual insights, and build automated dashboards — all through natural language.
 
