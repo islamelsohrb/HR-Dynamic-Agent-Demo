@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { LayoutDashboard, Database, Bot, Box, X, List, Layers } from 'lucide-react';
 import { Page, ActiveDataset, DatasetListItem } from '../types';
 import { DatasetList } from './DatasetList';
-
+import Logo from './logo';
 interface SidebarProps {
   currentPage: Page;
   onNavigate: (page: Page) => void;
@@ -55,13 +55,14 @@ export const Sidebar: React.FC<SidebarProps> = ({
         {/* Header */}
         <div className="h-16 flex items-center px-6 border-b border-slate-800 shrink-0">
            <div className="flex items-center gap-3 text-white">
-              <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center text-white font-bold shadow-lg shadow-purple-500/20">
+              {/* <div className="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center text-white font-bold shadow-lg shadow-purple-500/20">
                  OS
               </div>
               <div className="leading-tight">
                  <h1 className="font-bold tracking-tight text-sm text-slate-100">Enterprise Insight</h1>
                  <p className="text-[10px] text-purple-400 font-mono">DEMO v2.0</p>
-              </div>
+              </div> */}
+               <Logo size="lg" />
            </div>
            {isMobile && (
              <button onClick={onClose} className="ml-auto text-slate-500 hover:text-white">

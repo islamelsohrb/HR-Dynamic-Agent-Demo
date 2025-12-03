@@ -140,35 +140,43 @@ architecture:
 ```
 root/
 │
-├── app/
-│   ├── upload/
-│   ├── chat/
-│   ├── dashboard/
-│   ├── layout.tsx
-│   └── globals.css
-│
-├── agent/
-│   ├── generateAgentResponse.ts
-│   ├── agentLoop.ts
-│   └── tools/
-│       ├── sqlTool.ts
-│       ├── statsTool.ts
-│       ├── chartTool.ts
-│       └── pythonTool.ts
-│
-├── components/
-│   ├── UploadDropzone.tsx
-│   ├── ChatBubble.tsx
-│   ├── ChartRenderer.tsx
-│   └── DashboardCard.tsx
-│
-├── lib/
-│   ├── supabaseClient.ts
-│   └── utils.ts
-│
-└── public/
-    └── logo.svg
-```
+|   .env.local
+|   .gitignore
+|   App.tsx
+|   index.html
+|   index.tsx
+|   LICENSE
+|   metadata.json
+|   package-lock.json
+|   package.json
+|   README.md
+|   tsconfig.json
+|   types.ts
+|   vite.config.ts
+|
++---components
+|       ChatWindow.tsx
+|       DatasetList.tsx
+|       FloatingChat.tsx
+|       IngestionPanel.tsx
+|       Sidebar.tsx
+|       TopBar.tsx
+|       UploadModal.tsx
+|
++---pages
+|       AgentConsole.tsx
+|       DataStudio.tsx
+|       Overview.tsx
+|
++---services
+|       agentLogger.ts
+|       dataOpsService.ts
+|       geminiService.ts
+|       hrAnalyticsService.ts
+|
+\---utils
+        mockDataOps.ts
+        parsers.ts
 
 ---
 
